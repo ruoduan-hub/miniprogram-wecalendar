@@ -17,6 +17,10 @@
     "dev": "node build.mjs --dev",
     "build": "node build.mjs"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ruoduan-hub/miniprogram-wecalendar"
+  },
   "author": "ruoduan",
   "license": "Anti 996",
   "miniprogram": "dist",

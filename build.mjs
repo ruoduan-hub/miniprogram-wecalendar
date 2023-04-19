@@ -29,7 +29,7 @@ if (getEnv()) {
   ctx.watch()
 } else {
   esbuild.build({
-    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json}'),
+    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png}'),
     outdir: 'dist',
     loader: {
       '.less': 'copy',

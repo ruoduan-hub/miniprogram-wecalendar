@@ -9,6 +9,7 @@
 [![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ruoduan-hub/miniprogram-wecalendar)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
 [![esbuild-node](https://img.shields.io/badge/Node18-Esbuild-blue)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
 [![miniprogram](https://img.shields.io/badge/Component-miniprogram-blue)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
+[![GitHub](https://img.shields.io/badge/license-Anti%20996-blue)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
 
 ---
 

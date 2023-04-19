@@ -1,8 +1,18 @@
 ## miniprogram-wecalendar
 > A miniprogram date component that supports sliding, weekly folding, and brisk
+> Built with ESbuild, now responsive
 
+[中文 README](README-zh_CN.md)
+
+### Exhibit
+
+<div style="display: flex; justify-content: space-around;background: #fff">
+  <img src="https://s2.loli.net/2023/04/19/u7owCD6U9pAiLxf.png" alt="image" style="zoom: 25%;" />
+  <img src="https://s2.loli.net/2023/04/19/HaL4mwgMDou5fyK.gif" alt="git" style="zoom:67%;" />
+</div>
 
 ### install
+
 ```js
 npm i miniprogram-wecalendar
 ```
@@ -75,6 +85,12 @@ onRangeDate: (e) => {
   // ...
 }
 ```
+
+### Development start
+```js
+npm run dev
+```
+- - Use the WeChat applet development tool to open the `demo` folder, change the file under `src` and it will be automatically built
 
 
 

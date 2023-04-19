@@ -2,6 +2,13 @@
   "name": "miniprogram-wecalendar",
   "version": "1.1.1",
   "description": "A miniprogram date component that supports sliding, weekly folding, and brisk",
+  "keywords": [
+    "miniprogram-Calendar",
+    "Esbuild build",
+    "Week Fold Calendar",
+    "Touch Sliding Calendar",
+    "Modern; Fast; miniprogram-Calendar "
+  ],
   "engines": {
     "node": "^18.15.0"
   },

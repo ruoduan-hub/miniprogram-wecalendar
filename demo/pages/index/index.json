@@ -2,7 +2,6 @@
     "enablePullDownRefresh": false,
     "disableScroll": false,
     "usingComponents": {
-     "At": "/components/At",
-     "WeCalendar": "/components/WeCalendar"
+     "WeCalendar": "/components/index"
     }
   }

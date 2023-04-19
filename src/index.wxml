@@ -4,23 +4,23 @@
 <gestureContainer bind:onSlide="onSlide">
   <view class="calendar" slot="content">
     <view class="calendar-header">
-      <image class="left-icon" src="../images/right.png" catchtap="onPrev" />
+      <image class="left-icon" src="./images/right.png" catchtap="onPrev" />
       <text>{{MonthText}}</text>
       <view>
-        <image wx:if="{{isToday}}" src="../images/today.png" style="width:48rpx;height:48rpx; margin-right: 20rpx;" catchtap="onToToday" />
-        <image class="right-icon" src="../images/left.png" catchtap="onNext" />
+        <image wx:if="{{isToday}}" src="./images/today.png" style="width:48rpx;height:48rpx; margin-right: 20rpx;" catchtap="onToToday" />
+        <image class="right-icon" src="./images/left.png" catchtap="onNext" />
       </view>
       
     </view>
     <view class="calendar-body" bindtouchstart="touchStart" bindtouchmove="touchMove" bindtouchend="touchEnd">
       <view class="weekday">
-        <view style="color: #999; font-size:14px;" class="weekday-item" wx:for="{{weekdaysShort}}">
+        <view style="color: #999; font-size:14px;" class="weekday-item" wx:for="{{weekdaysShort}}" wx:key="item"  >
           {{item}}
         </view>
       </view>
 
       <view class="weekday" animation="{{animation}}" >
-        <view style="color: {{ item.isCurrent ? '' : '#ccc' }};" class="calendar-cell {{ item.date === value ? 'cell-selected' : '' }}" wx:for="{{isFold ? calendarGroups : calendar}}">
+        <view style="color: {{ item.isCurrent ? '' : '#ccc' }};" class="calendar-cell {{ item.date === value ? 'cell-selected' : '' }}" wx:for="{{isFold ? calendarGroups : calendar}}" wx:key="date" >
           <view class="cell-today" data-item="{{item}}" style="color: {{ item.date === value ? '#fff': '' }};" catchtap="onCheck" wx:if="{{ today === item.date }}">
             今
           </view>
@@ -33,8 +33,8 @@
       </view>
     </view>
 
-    <view bindtap="onFold" class="action-fold">
-      <image src="{{!isFold ? '../images/close.png' : '../images/unfold.png'}}"></image>
+    <view bindtap="onFold" class="action-fold" hidden="{{ !showFolding }}">
+      <image src="{{!isFold ? './images/close.png' : './images/unfold.png'}}"></image>
     </view>
   </view>
 </gestureContainer>

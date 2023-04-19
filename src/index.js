@@ -27,6 +27,14 @@ Component({
     defaultDate: {
       type: String,
       value: null
+    },
+    showFolding: {
+      type: Boolean,
+      value: true
+    },
+    weeekLayer: {
+      type: Number,
+      value: 1
     }
   },
   lifetimes: {
@@ -65,6 +73,8 @@ Component({
     calendarGroups: [],
     weekdaysShort: weekdaysShort,
     isFold: false,
+    showFolding: true,
+    weeekLayer: 1,
     animation: {},
   },
   observers: {
@@ -78,20 +88,6 @@ Component({
         MonthText: dayjs(value).format('YYYY年MM月')
       })
     },
-    // 'markCalendarList': function (markCalendarList){
-    //   const { calendar, calendarGroups } = this.data
-    //     debugger
-    //     this.setData({
-    //       calendar: calendar.map(item => ({
-    //         ...item,
-    //         pointColor: markCalendarList.find(it => item.date == it.date)?.pointColor
-    //       })),
-    //       calendarGroups: calendarGroups.map(item => ({
-    //         ...item,
-    //         pointColor: markCalendarList.find(it => item.date == it.date)?.pointColor
-    //       })),
-    //     })
-    // },
     'calendarGroups': function (calendarGroups) {
       if (this.data.isFold) {
         const month = dayjs(calendarGroups[0].date).month()
@@ -151,8 +147,7 @@ Component({
       }, () => this.generationWeek())
     },
     generationWeek(type) {
-      const { value } = this.data
-      const weeekLayer = 1
+      const { value, weeekLayer } = this.data
       const len = 7 * weeekLayer
       // 处理周日历
       let groups = [];
@@ -282,7 +277,7 @@ Component({
         MonthRange: dayjs()
       }, () => {
         this.generationCalendar()
-        this.triggerEvent('listByDay', {day: dayjs().format('YYYY-MM-DD')})
+        this.triggerEvent('onSelect', {day: dayjs().format('YYYY-MM-DD')})
       })
     }
   }

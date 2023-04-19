@@ -264,6 +264,14 @@
       defaultDate: {
         type: String,
         value: null
+      },
+      showFolding: {
+        type: Boolean,
+        value: true
+      },
+      weeekLayer: {
+        type: Number,
+        value: 1
       }
     },
     lifetimes: {
@@ -299,6 +307,8 @@
       calendarGroups: [],
       weekdaysShort,
       isFold: false,
+      showFolding: true,
+      weeekLayer: 1,
       animation: {}
     },
     observers: {
@@ -312,20 +322,6 @@
           MonthText: (0, import_dayjs.default)(value).format("YYYY\u5E74MM\u6708")
         });
       },
-      // 'markCalendarList': function (markCalendarList){
-      //   const { calendar, calendarGroups } = this.data
-      //     debugger
-      //     this.setData({
-      //       calendar: calendar.map(item => ({
-      //         ...item,
-      //         pointColor: markCalendarList.find(it => item.date == it.date)?.pointColor
-      //       })),
-      //       calendarGroups: calendarGroups.map(item => ({
-      //         ...item,
-      //         pointColor: markCalendarList.find(it => item.date == it.date)?.pointColor
-      //       })),
-      //     })
-      // },
       "calendarGroups": function(calendarGroups) {
         if (this.data.isFold) {
           const month = (0, import_dayjs.default)(calendarGroups[0].date).month();
@@ -374,8 +370,7 @@
         }, () => this.generationWeek());
       },
       generationWeek(type) {
-        const { value } = this.data;
-        const weeekLayer = 1;
+        const { value, weeekLayer } = this.data;
         const len = 7 * weeekLayer;
         let groups = [];
         if (type === "next") {
@@ -496,7 +491,7 @@
           MonthRange: (0, import_dayjs.default)()
         }, () => {
           this.generationCalendar();
-          this.triggerEvent("listByDay", { day: (0, import_dayjs.default)().format("YYYY-MM-DD") });
+          this.triggerEvent("onSelect", { day: (0, import_dayjs.default)().format("YYYY-MM-DD") });
         });
       }
     }

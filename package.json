@@ -1,0 +1,23 @@
+{
+  "name": "miniprogram-wecalendar",
+  "version": "1.0.3",
+  "description": "A miniprogram date component that supports sliding, weekly folding, and brisk",
+  "engines": {
+    "node": "^18.15.0"
+  },
+  "main": "dist/WeCalendar/index.js",
+  "scripts": {
+    "dev": "node build.mjs --dev",
+    "build": "node build.mjs"
+  },
+  "author": "ruoduan",
+  "license": "Anti 996",
+  "miniprogram": "dist",
+  "dependencies": {
+    "dayjs": "^1.11.7"
+  },
+  "devDependencies": {
+    "glob": "^10.2.1",
+    "esbuild": "0.17.17"
+  }
+}

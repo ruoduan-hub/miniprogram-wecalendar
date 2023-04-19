@@ -1,0 +1,9 @@
+
+
+var formatDay = function (date) {
+  return date.split('-')[2]
+}
+
+module.exports = {
+  formatDay: formatDay
+};

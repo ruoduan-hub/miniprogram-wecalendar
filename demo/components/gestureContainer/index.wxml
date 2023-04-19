@@ -1,0 +1,7 @@
+<!--component/gestureContainer/index.wxml-->
+<view style="width:100%;height:100%;" 
+  bind:touchstart="touchStart" 
+  bind:touchend="touchEnd" 
+  bind:touchcancel="touchCancel">
+  <slot name="content"></slot>
+</view>

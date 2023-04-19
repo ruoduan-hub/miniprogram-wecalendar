@@ -1,0 +1,6 @@
+*.md
+
+src/
+node_modules/
+demo/
+build.mjs

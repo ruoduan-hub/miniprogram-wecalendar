@@ -1,0 +1,5 @@
+<!--index.wxml-->
+<view class="container">
+    <At />
+    <WeCalendar markCalendarList="{{markCalendarList}}" isToday="{{true}}" bind:onRangeDate="onRangeDate" bind:onSelect="onSelect" />
+</view>

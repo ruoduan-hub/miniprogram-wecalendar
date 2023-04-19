@@ -2,6 +2,15 @@
 > 一个支持滑动、自定义折叠、标记日期、轻快的小程序日期组件
 > 使用ESbuild 构建,现在的快速响应的
 
+---
+
+[![npm (tag)](https://img.shields.io/npm/v/miniprogram-wecalendar)](https://www.npmjs.com/package/miniprogram-wecalendar) 
+[![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/ruoduan-hub/miniprogram-wecalendar)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
+[![esbuild-node](https://img.shields.io/badge/Node18-Esbuild-blue)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
+[![miniprogram](https://img.shields.io/badge/Component-miniprogram-blue)](https://github.com/ruoduan-hub/miniprogram-wecalendar)
+
+---
+
 [英文 README](README.md)
 
 ### 展示

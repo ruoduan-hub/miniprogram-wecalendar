@@ -21,7 +21,7 @@ if (getEnv()) {
       '.png': 'copy',
       '.json': 'copy',
     },
-    bundle: false,
+    bundle: true,
     minify: false,
     sourcemap: false,
     logLevel: 'info',

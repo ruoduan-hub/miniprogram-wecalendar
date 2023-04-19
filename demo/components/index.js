@@ -1,1 +1,499 @@
-(()=>{var K=Object.create;var z=Object.defineProperty;var X=Object.getOwnPropertyDescriptor;var tt=Object.getOwnPropertyNames;var et=Object.getPrototypeOf,nt=Object.prototype.hasOwnProperty;var at=(a,i)=>()=>(i||a((i={exports:{}}).exports,i),i.exports);var it=(a,i,c,m)=>{if(i&&typeof i=="object"||typeof i=="function")for(let f of tt(i))!nt.call(a,f)&&f!==c&&z(a,f,{get:()=>i[f],enumerable:!(m=X(i,f))||m.enumerable});return a};var rt=(a,i,c)=>(c=a!=null?K(et(a)):{},it(i||!a||!a.__esModule?z(c,"default",{value:a,enumerable:!0}):c,a));var B=at((j,U)=>{(function(a,i){typeof j=="object"&&typeof U<"u"?U.exports=i():typeof define=="function"&&define.amd?define(i):(a=typeof globalThis<"u"?globalThis:a||self).dayjs=i()})(j,function(){"use strict";var a=1e3,i=6e4,c=36e5,m="millisecond",f="second",M="minute",v="hour",D="day",S="week",w="month",E="quarter",k="year",_="date",J="Invalid Date",P=/^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/,V=/\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g,q={name:"en",weekdays:"Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"),months:"January_February_March_April_May_June_July_August_September_October_November_December".split("_"),ordinal:function(r){var n=["th","st","nd","rd"],t=r%100;return"["+r+(n[(t-20)%10]||n[t]||n[0])+"]"}},N=function(r,n,t){var s=String(r);return!s||s.length>=n?r:""+Array(n+1-s.length).join(t)+r},Q={s:N,z:function(r){var n=-r.utcOffset(),t=Math.abs(n),s=Math.floor(t/60),e=t%60;return(n<=0?"+":"-")+N(s,2,"0")+":"+N(e,2,"0")},m:function r(n,t){if(n.date()<t.date())return-r(t,n);var s=12*(t.year()-n.year())+(t.month()-n.month()),e=n.clone().add(s,w),u=t-e<0,o=n.clone().add(s+(u?-1:1),w);return+(-(s+(t-e)/(u?e-o:o-e))||0)},a:function(r){return r<0?Math.ceil(r)||0:Math.floor(r)},p:function(r){return{M:w,y:k,w:S,d:D,D:_,h:v,m:M,s:f,ms:m,Q:E}[r]||String(r||"").toLowerCase().replace(/s$/,"")},u:function(r){return r===void 0}},L="en",T={};T[L]=q;var G=function(r){return r instanceof W},A=function r(n,t,s){var e;if(!n)return L;if(typeof n=="string"){var u=n.toLowerCase();T[u]&&(e=u),t&&(T[u]=t,e=u);var o=n.split("-");if(!e&&o.length>1)return r(o[0])}else{var d=n.name;T[d]=n,e=d}return!s&&e&&(L=e),e||!s&&L},g=function(r,n){if(G(r))return r.clone();var t=typeof n=="object"?n:{};return t.date=r,t.args=arguments,new W(t)},h=Q;h.l=A,h.i=G,h.w=function(r,n){return g(r,{locale:n.$L,utc:n.$u,x:n.$x,$offset:n.$offset})};var W=function(){function r(t){this.$L=A(t.locale,null,!0),this.parse(t)}var n=r.prototype;return n.parse=function(t){this.$d=function(s){var e=s.date,u=s.utc;if(e===null)return new Date(NaN);if(h.u(e))return new Date;if(e instanceof Date)return new Date(e);if(typeof e=="string"&&!/Z$/i.test(e)){var o=e.match(P);if(o){var d=o[2]-1||0,$=(o[7]||"0").substring(0,3);return u?new Date(Date.UTC(o[1],d,o[3]||1,o[4]||0,o[5]||0,o[6]||0,$)):new Date(o[1],d,o[3]||1,o[4]||0,o[5]||0,o[6]||0,$)}}return new Date(e)}(t),this.$x=t.x||{},this.init()},n.init=function(){var t=this.$d;this.$y=t.getFullYear(),this.$M=t.getMonth(),this.$D=t.getDate(),this.$W=t.getDay(),this.$H=t.getHours(),this.$m=t.getMinutes(),this.$s=t.getSeconds(),this.$ms=t.getMilliseconds()},n.$utils=function(){return h},n.isValid=function(){return this.$d.toString()!==J},n.isSame=function(t,s){var e=g(t);return this.startOf(s)<=e&&e<=this.endOf(s)},n.isAfter=function(t,s){return g(t)<this.startOf(s)},n.isBefore=function(t,s){return this.endOf(s)<g(t)},n.$g=function(t,s,e){return h.u(t)?this[s]:this.set(e,t)},n.unix=function(){return Math.floor(this.valueOf()/1e3)},n.valueOf=function(){return this.$d.getTime()},n.startOf=function(t,s){var e=this,u=!!h.u(s)||s,o=h.p(t),d=function(x,p){var b=h.w(e.$u?Date.UTC(e.$y,p,x):new Date(e.$y,p,x),e);return u?b:b.endOf(D)},$=function(x,p){return h.w(e.toDate()[x].apply(e.toDate("s"),(u?[0,0,0,0]:[23,59,59,999]).slice(p)),e)},l=this.$W,Y=this.$M,C=this.$D,O="set"+(this.$u?"UTC":"");switch(o){case k:return u?d(1,0):d(31,11);case w:return u?d(1,Y):d(0,Y+1);case S:var R=this.$locale().weekStart||0,F=(l<R?l+7:l)-R;return d(u?C-F:C+(6-F),Y);case D:case _:return $(O+"Hours",0);case v:return $(O+"Minutes",1);case M:return $(O+"Seconds",2);case f:return $(O+"Milliseconds",3);default:return this.clone()}},n.endOf=function(t){return this.startOf(t,!1)},n.$set=function(t,s){var e,u=h.p(t),o="set"+(this.$u?"UTC":""),d=(e={},e[D]=o+"Date",e[_]=o+"Date",e[w]=o+"Month",e[k]=o+"FullYear",e[v]=o+"Hours",e[M]=o+"Minutes",e[f]=o+"Seconds",e[m]=o+"Milliseconds",e)[u],$=u===D?this.$D+(s-this.$W):s;if(u===w||u===k){var l=this.clone().set(_,1);l.$d[d]($),l.init(),this.$d=l.set(_,Math.min(this.$D,l.daysInMonth())).$d}else d&&this.$d[d]($);return this.init(),this},n.set=function(t,s){return this.clone().$set(t,s)},n.get=function(t){return this[h.p(t)]()},n.add=function(t,s){var e,u=this;t=Number(t);var o=h.p(s),d=function(Y){var C=g(u);return h.w(C.date(C.date()+Math.round(Y*t)),u)};if(o===w)return this.set(w,this.$M+t);if(o===k)return this.set(k,this.$y+t);if(o===D)return d(1);if(o===S)return d(7);var $=(e={},e[M]=i,e[v]=c,e[f]=a,e)[o]||1,l=this.$d.getTime()+t*$;return h.w(l,this)},n.subtract=function(t,s){return this.add(-1*t,s)},n.format=function(t){var s=this,e=this.$locale();if(!this.isValid())return e.invalidDate||J;var u=t||"YYYY-MM-DDTHH:mm:ssZ",o=h.z(this),d=this.$H,$=this.$m,l=this.$M,Y=e.weekdays,C=e.months,O=function(p,b,I,H){return p&&(p[b]||p(s,u))||I[b].slice(0,H)},R=function(p){return h.s(d%12||12,p,"0")},F=e.meridiem||function(p,b,I){var H=p<12?"AM":"PM";return I?H.toLowerCase():H},x={YY:String(this.$y).slice(-2),YYYY:this.$y,M:l+1,MM:h.s(l+1,2,"0"),MMM:O(e.monthsShort,l,C,3),MMMM:O(C,l),D:this.$D,DD:h.s(this.$D,2,"0"),d:String(this.$W),dd:O(e.weekdaysMin,this.$W,Y,2),ddd:O(e.weekdaysShort,this.$W,Y,3),dddd:Y[this.$W],H:String(d),HH:h.s(d,2,"0"),h:R(1),hh:R(2),a:F(d,$,!0),A:F(d,$,!1),m:String($),mm:h.s($,2,"0"),s:String(this.$s),ss:h.s(this.$s,2,"0"),SSS:h.s(this.$ms,3,"0"),Z:o};return u.replace(V,function(p,b){return b||x[p]||o.replace(":","")})},n.utcOffset=function(){return 15*-Math.round(this.$d.getTimezoneOffset()/15)},n.diff=function(t,s,e){var u,o=h.p(s),d=g(t),$=(d.utcOffset()-this.utcOffset())*i,l=this-d,Y=h.m(this,d);return Y=(u={},u[k]=Y/12,u[w]=Y,u[E]=Y/3,u[S]=(l-$)/6048e5,u[D]=(l-$)/864e5,u[v]=l/c,u[M]=l/i,u[f]=l/a,u)[o]||l,e?Y:h.a(Y)},n.daysInMonth=function(){return this.endOf(w).$D},n.$locale=function(){return T[this.$L]},n.locale=function(t,s){if(!t)return this.$L;var e=this.clone(),u=A(t,s,!0);return u&&(e.$L=u),e},n.clone=function(){return h.w(this.$d,this)},n.toDate=function(){return new Date(this.valueOf())},n.toJSON=function(){return this.isValid()?this.toISOString():null},n.toISOString=function(){return this.$d.toISOString()},n.toString=function(){return this.$d.toUTCString()},r}(),Z=W.prototype;return g.prototype=Z,[["$ms",m],["$s",f],["$m",M],["$H",v],["$W",D],["$M",w],["$y",k],["$D",_]].forEach(function(r){Z[r[1]]=function(n){return this.$g(n,r[0],r[1])}}),g.extend=function(r,n){return r.$i||(r(n,W,g),r.$i=!0),g},g.locale=A,g.isDayjs=G,g.unix=function(r){return g(1e3*r)},g.en=T[L],g.Ls=T,g.p={},g})});var y=rt(B()),st=["\u65E5","\u4E00","\u4E8C","\u4E09","\u56DB","\u4E94","\u516D"];Component({properties:{markCalendarList:{type:Array,value:[]},isToday:{type:Boolean,value:!1},defaultDate:{type:String,value:null},showFolding:{type:Boolean,value:!0},weeekLayer:{type:Number,value:1}},lifetimes:{attached:function(){},detached:function(){},created:function(){},ready:function(){let a=wx.createAnimation({duration:230,delay:0});this.setData({animation:a.export(),MonthRange:this.data.defaultDate?(0,y.default)(this.data.defaultDate):(0,y.default)(),value:this.data.defaultDate?(0,y.default)(this.data.defaultDate).format("YYYY-MM-DD"):(0,y.default)().format("YYYY-MM-DD")},()=>{this.generationCalendar()})}},data:{today:(0,y.default)().format("YYYY-MM-DD"),MonthRange:(0,y.default)(),MonthText:(0,y.default)().format("YYYY\u5E74MM\u6708"),value:(0,y.default)().format("YYYY-MM-DD"),calendar:[],calendarGroups:[],weekdaysShort:st,isFold:!1,showFolding:!0,weeekLayer:1,animation:{}},observers:{MonthRange:function(a){this.setData({MonthText:a.format("YYYY\u5E74MM\u6708")})},value:function(a){this.setData({MonthText:(0,y.default)(a).format("YYYY\u5E74MM\u6708")})},calendarGroups:function(a){if(this.data.isFold){let i=(0,y.default)(a[0].date).month();this.setData({MonthRange:this.data.MonthRange.month(i)})}}},methods:{generationCalendar(){let{MonthRange:a}=this.data,i=a.daysInMonth(),c=a.startOf("month").format("d"),m=a.endOf("month").format("d"),f=a.startOf("month"),M=a.endOf("month"),v=[];for(let D=0;D<Number(c);D++){let S=f.subtract(D+1,"days").format("YYYY-MM-DD");v.unshift({date:S,isCurrent:0})}for(let D=0;D<i;D++){let S=a.date(D+1).format("YYYY-MM-DD");v.push({date:S,isCurrent:1})}for(let D=0;D<6-Number(m);D++){let S=M.add(D+1,"days").format("YYYY-MM-DD");v.push({date:S,isCurrent:0})}this.setData({calendar:v},()=>this.generationWeek())},generationWeek(a){let{value:i,weeekLayer:c}=this.data,m=7*c,f=[];if(a==="next")for(let M=0;M<m;M++)f.push({date:(0,y.default)(this.data.calendarGroups[0].date).add(c,"week").startOf("week").add(M,"day").format("YYYY-MM-DD"),isCurrent:1});else if(a==="prev")for(let M=0;M<m;M++)f.push({date:(0,y.default)(this.data.calendarGroups[0].date).subtract(c,"week").startOf("week").add(M,"day").format("YYYY-MM-DD"),isCurrent:1});else for(let M=0;M<m;M++)f.push({date:i?(0,y.default)(i).startOf("week").add(M,"day").format("YYYY-MM-DD"):MonthRange.startOf("week").add(M,"day").format("YYYY-MM-DD"),isCurrent:1});this.setData({calendarGroups:f},()=>{this.getRangeDate(),this.handeleMarkCalendarList()})},getRangeDate(){let{isFold:a,calendar:i,calendarGroups:c}=this.data,m=a?c[0].date:i[0].date,f=a?c[c.length-1].date:i[i.length-1].date;this.triggerEvent("onRangeDate",{beginTime:m,endTime:f})},handeleMarkCalendarList(){let{calendar:a,calendarGroups:i,markCalendarList:c}=this.data;this.setData({calendar:a.map(m=>({...m,pointColor:c.find(f=>m.date==f.date)?.pointColor})),calendarGroups:i.map(m=>({...m,pointColor:c.find(f=>m.date==f.date)?.pointColor}))})},onCheck(a){let{item:i}=a.target.dataset,{date:c}=i;this.setData({value:c},()=>{this.triggerEvent("onSelect",{day:c})})},onFold(){this.setData({isFold:!this.data.isFold},()=>{this.generationCalendar()})},onNext(){let{MonthRange:a,isFold:i}=this.data;i||this.setData({MonthRange:a.add(1,i?"week":"month")},()=>{this.generationCalendar()}),this.generationWeek("next"),this.onAnimation()},onPrev(){let{MonthRange:a,isFold:i}=this.data;i||this.setData({MonthRange:a.subtract(1,i?"week":"month")},()=>{this.generationCalendar()}),this.generationWeek("prev"),this.onAnimation()},onSlide(a){switch(a.detail){case"R":this.onPrev();break;case"L":this.onNext();break;default:break}},onAnimation(){let a=wx.createAnimation({duration:320,timingFunction:"step-start",delay:0});a.opacity(.3).step(),a.opacity(1).step(),this.setData({animation:a.export()})},onToToday(){this.setData({value:(0,y.default)().format("YYYY-MM-DD"),MonthRange:(0,y.default)()},()=>{this.generationCalendar(),this.triggerEvent("onSelect",{day:(0,y.default)().format("YYYY-MM-DD")})})}}});})();
+(() => {
+  var __create = Object.create;
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __commonJS = (cb, mod) => function __require() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
+  ));
+
+  // node_modules/dayjs/dayjs.min.js
+  var require_dayjs_min = __commonJS({
+    "node_modules/dayjs/dayjs.min.js"(exports, module) {
+      !function(t, e) {
+        "object" == typeof exports && "undefined" != typeof module ? module.exports = e() : "function" == typeof define && define.amd ? define(e) : (t = "undefined" != typeof globalThis ? globalThis : t || self).dayjs = e();
+      }(exports, function() {
+        "use strict";
+        var t = 1e3, e = 6e4, n = 36e5, r = "millisecond", i = "second", s = "minute", u = "hour", a = "day", o = "week", f = "month", h = "quarter", c = "year", d = "date", l = "Invalid Date", $ = /^(\d{4})[-/]?(\d{1,2})?[-/]?(\d{0,2})[Tt\s]*(\d{1,2})?:?(\d{1,2})?:?(\d{1,2})?[.:]?(\d+)?$/, y = /\[([^\]]+)]|Y{1,4}|M{1,4}|D{1,2}|d{1,4}|H{1,2}|h{1,2}|a|A|m{1,2}|s{1,2}|Z{1,2}|SSS/g, M = { name: "en", weekdays: "Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday".split("_"), months: "January_February_March_April_May_June_July_August_September_October_November_December".split("_"), ordinal: function(t2) {
+          var e2 = ["th", "st", "nd", "rd"], n2 = t2 % 100;
+          return "[" + t2 + (e2[(n2 - 20) % 10] || e2[n2] || e2[0]) + "]";
+        } }, m = function(t2, e2, n2) {
+          var r2 = String(t2);
+          return !r2 || r2.length >= e2 ? t2 : "" + Array(e2 + 1 - r2.length).join(n2) + t2;
+        }, v = { s: m, z: function(t2) {
+          var e2 = -t2.utcOffset(), n2 = Math.abs(e2), r2 = Math.floor(n2 / 60), i2 = n2 % 60;
+          return (e2 <= 0 ? "+" : "-") + m(r2, 2, "0") + ":" + m(i2, 2, "0");
+        }, m: function t2(e2, n2) {
+          if (e2.date() < n2.date())
+            return -t2(n2, e2);
+          var r2 = 12 * (n2.year() - e2.year()) + (n2.month() - e2.month()), i2 = e2.clone().add(r2, f), s2 = n2 - i2 < 0, u2 = e2.clone().add(r2 + (s2 ? -1 : 1), f);
+          return +(-(r2 + (n2 - i2) / (s2 ? i2 - u2 : u2 - i2)) || 0);
+        }, a: function(t2) {
+          return t2 < 0 ? Math.ceil(t2) || 0 : Math.floor(t2);
+        }, p: function(t2) {
+          return { M: f, y: c, w: o, d: a, D: d, h: u, m: s, s: i, ms: r, Q: h }[t2] || String(t2 || "").toLowerCase().replace(/s$/, "");
+        }, u: function(t2) {
+          return void 0 === t2;
+        } }, g = "en", D = {};
+        D[g] = M;
+        var p = function(t2) {
+          return t2 instanceof _;
+        }, S = function t2(e2, n2, r2) {
+          var i2;
+          if (!e2)
+            return g;
+          if ("string" == typeof e2) {
+            var s2 = e2.toLowerCase();
+            D[s2] && (i2 = s2), n2 && (D[s2] = n2, i2 = s2);
+            var u2 = e2.split("-");
+            if (!i2 && u2.length > 1)
+              return t2(u2[0]);
+          } else {
+            var a2 = e2.name;
+            D[a2] = e2, i2 = a2;
+          }
+          return !r2 && i2 && (g = i2), i2 || !r2 && g;
+        }, w = function(t2, e2) {
+          if (p(t2))
+            return t2.clone();
+          var n2 = "object" == typeof e2 ? e2 : {};
+          return n2.date = t2, n2.args = arguments, new _(n2);
+        }, O = v;
+        O.l = S, O.i = p, O.w = function(t2, e2) {
+          return w(t2, { locale: e2.$L, utc: e2.$u, x: e2.$x, $offset: e2.$offset });
+        };
+        var _ = function() {
+          function M2(t2) {
+            this.$L = S(t2.locale, null, true), this.parse(t2);
+          }
+          var m2 = M2.prototype;
+          return m2.parse = function(t2) {
+            this.$d = function(t3) {
+              var e2 = t3.date, n2 = t3.utc;
+              if (null === e2)
+                return /* @__PURE__ */ new Date(NaN);
+              if (O.u(e2))
+                return /* @__PURE__ */ new Date();
+              if (e2 instanceof Date)
+                return new Date(e2);
+              if ("string" == typeof e2 && !/Z$/i.test(e2)) {
+                var r2 = e2.match($);
+                if (r2) {
+                  var i2 = r2[2] - 1 || 0, s2 = (r2[7] || "0").substring(0, 3);
+                  return n2 ? new Date(Date.UTC(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2)) : new Date(r2[1], i2, r2[3] || 1, r2[4] || 0, r2[5] || 0, r2[6] || 0, s2);
+                }
+              }
+              return new Date(e2);
+            }(t2), this.$x = t2.x || {}, this.init();
+          }, m2.init = function() {
+            var t2 = this.$d;
+            this.$y = t2.getFullYear(), this.$M = t2.getMonth(), this.$D = t2.getDate(), this.$W = t2.getDay(), this.$H = t2.getHours(), this.$m = t2.getMinutes(), this.$s = t2.getSeconds(), this.$ms = t2.getMilliseconds();
+          }, m2.$utils = function() {
+            return O;
+          }, m2.isValid = function() {
+            return !(this.$d.toString() === l);
+          }, m2.isSame = function(t2, e2) {
+            var n2 = w(t2);
+            return this.startOf(e2) <= n2 && n2 <= this.endOf(e2);
+          }, m2.isAfter = function(t2, e2) {
+            return w(t2) < this.startOf(e2);
+          }, m2.isBefore = function(t2, e2) {
+            return this.endOf(e2) < w(t2);
+          }, m2.$g = function(t2, e2, n2) {
+            return O.u(t2) ? this[e2] : this.set(n2, t2);
+          }, m2.unix = function() {
+            return Math.floor(this.valueOf() / 1e3);
+          }, m2.valueOf = function() {
+            return this.$d.getTime();
+          }, m2.startOf = function(t2, e2) {
+            var n2 = this, r2 = !!O.u(e2) || e2, h2 = O.p(t2), l2 = function(t3, e3) {
+              var i2 = O.w(n2.$u ? Date.UTC(n2.$y, e3, t3) : new Date(n2.$y, e3, t3), n2);
+              return r2 ? i2 : i2.endOf(a);
+            }, $2 = function(t3, e3) {
+              return O.w(n2.toDate()[t3].apply(n2.toDate("s"), (r2 ? [0, 0, 0, 0] : [23, 59, 59, 999]).slice(e3)), n2);
+            }, y2 = this.$W, M3 = this.$M, m3 = this.$D, v2 = "set" + (this.$u ? "UTC" : "");
+            switch (h2) {
+              case c:
+                return r2 ? l2(1, 0) : l2(31, 11);
+              case f:
+                return r2 ? l2(1, M3) : l2(0, M3 + 1);
+              case o:
+                var g2 = this.$locale().weekStart || 0, D2 = (y2 < g2 ? y2 + 7 : y2) - g2;
+                return l2(r2 ? m3 - D2 : m3 + (6 - D2), M3);
+              case a:
+              case d:
+                return $2(v2 + "Hours", 0);
+              case u:
+                return $2(v2 + "Minutes", 1);
+              case s:
+                return $2(v2 + "Seconds", 2);
+              case i:
+                return $2(v2 + "Milliseconds", 3);
+              default:
+                return this.clone();
+            }
+          }, m2.endOf = function(t2) {
+            return this.startOf(t2, false);
+          }, m2.$set = function(t2, e2) {
+            var n2, o2 = O.p(t2), h2 = "set" + (this.$u ? "UTC" : ""), l2 = (n2 = {}, n2[a] = h2 + "Date", n2[d] = h2 + "Date", n2[f] = h2 + "Month", n2[c] = h2 + "FullYear", n2[u] = h2 + "Hours", n2[s] = h2 + "Minutes", n2[i] = h2 + "Seconds", n2[r] = h2 + "Milliseconds", n2)[o2], $2 = o2 === a ? this.$D + (e2 - this.$W) : e2;
+            if (o2 === f || o2 === c) {
+              var y2 = this.clone().set(d, 1);
+              y2.$d[l2]($2), y2.init(), this.$d = y2.set(d, Math.min(this.$D, y2.daysInMonth())).$d;
+            } else
+              l2 && this.$d[l2]($2);
+            return this.init(), this;
+          }, m2.set = function(t2, e2) {
+            return this.clone().$set(t2, e2);
+          }, m2.get = function(t2) {
+            return this[O.p(t2)]();
+          }, m2.add = function(r2, h2) {
+            var d2, l2 = this;
+            r2 = Number(r2);
+            var $2 = O.p(h2), y2 = function(t2) {
+              var e2 = w(l2);
+              return O.w(e2.date(e2.date() + Math.round(t2 * r2)), l2);
+            };
+            if ($2 === f)
+              return this.set(f, this.$M + r2);
+            if ($2 === c)
+              return this.set(c, this.$y + r2);
+            if ($2 === a)
+              return y2(1);
+            if ($2 === o)
+              return y2(7);
+            var M3 = (d2 = {}, d2[s] = e, d2[u] = n, d2[i] = t, d2)[$2] || 1, m3 = this.$d.getTime() + r2 * M3;
+            return O.w(m3, this);
+          }, m2.subtract = function(t2, e2) {
+            return this.add(-1 * t2, e2);
+          }, m2.format = function(t2) {
+            var e2 = this, n2 = this.$locale();
+            if (!this.isValid())
+              return n2.invalidDate || l;
+            var r2 = t2 || "YYYY-MM-DDTHH:mm:ssZ", i2 = O.z(this), s2 = this.$H, u2 = this.$m, a2 = this.$M, o2 = n2.weekdays, f2 = n2.months, h2 = function(t3, n3, i3, s3) {
+              return t3 && (t3[n3] || t3(e2, r2)) || i3[n3].slice(0, s3);
+            }, c2 = function(t3) {
+              return O.s(s2 % 12 || 12, t3, "0");
+            }, d2 = n2.meridiem || function(t3, e3, n3) {
+              var r3 = t3 < 12 ? "AM" : "PM";
+              return n3 ? r3.toLowerCase() : r3;
+            }, $2 = { YY: String(this.$y).slice(-2), YYYY: this.$y, M: a2 + 1, MM: O.s(a2 + 1, 2, "0"), MMM: h2(n2.monthsShort, a2, f2, 3), MMMM: h2(f2, a2), D: this.$D, DD: O.s(this.$D, 2, "0"), d: String(this.$W), dd: h2(n2.weekdaysMin, this.$W, o2, 2), ddd: h2(n2.weekdaysShort, this.$W, o2, 3), dddd: o2[this.$W], H: String(s2), HH: O.s(s2, 2, "0"), h: c2(1), hh: c2(2), a: d2(s2, u2, true), A: d2(s2, u2, false), m: String(u2), mm: O.s(u2, 2, "0"), s: String(this.$s), ss: O.s(this.$s, 2, "0"), SSS: O.s(this.$ms, 3, "0"), Z: i2 };
+            return r2.replace(y, function(t3, e3) {
+              return e3 || $2[t3] || i2.replace(":", "");
+            });
+          }, m2.utcOffset = function() {
+            return 15 * -Math.round(this.$d.getTimezoneOffset() / 15);
+          }, m2.diff = function(r2, d2, l2) {
+            var $2, y2 = O.p(d2), M3 = w(r2), m3 = (M3.utcOffset() - this.utcOffset()) * e, v2 = this - M3, g2 = O.m(this, M3);
+            return g2 = ($2 = {}, $2[c] = g2 / 12, $2[f] = g2, $2[h] = g2 / 3, $2[o] = (v2 - m3) / 6048e5, $2[a] = (v2 - m3) / 864e5, $2[u] = v2 / n, $2[s] = v2 / e, $2[i] = v2 / t, $2)[y2] || v2, l2 ? g2 : O.a(g2);
+          }, m2.daysInMonth = function() {
+            return this.endOf(f).$D;
+          }, m2.$locale = function() {
+            return D[this.$L];
+          }, m2.locale = function(t2, e2) {
+            if (!t2)
+              return this.$L;
+            var n2 = this.clone(), r2 = S(t2, e2, true);
+            return r2 && (n2.$L = r2), n2;
+          }, m2.clone = function() {
+            return O.w(this.$d, this);
+          }, m2.toDate = function() {
+            return new Date(this.valueOf());
+          }, m2.toJSON = function() {
+            return this.isValid() ? this.toISOString() : null;
+          }, m2.toISOString = function() {
+            return this.$d.toISOString();
+          }, m2.toString = function() {
+            return this.$d.toUTCString();
+          }, M2;
+        }(), T = _.prototype;
+        return w.prototype = T, [["$ms", r], ["$s", i], ["$m", s], ["$H", u], ["$W", a], ["$M", f], ["$y", c], ["$D", d]].forEach(function(t2) {
+          T[t2[1]] = function(e2) {
+            return this.$g(e2, t2[0], t2[1]);
+          };
+        }), w.extend = function(t2, e2) {
+          return t2.$i || (t2(e2, _, w), t2.$i = true), w;
+        }, w.locale = S, w.isDayjs = p, w.unix = function(t2) {
+          return w(1e3 * t2);
+        }, w.en = D[g], w.Ls = D, w.p = {}, w;
+      });
+    }
+  });
+
+  // src/index.js
+  var import_dayjs = __toESM(require_dayjs_min());
+  var weekdaysShort = [
+    "\u65E5",
+    "\u4E00",
+    "\u4E8C",
+    "\u4E09",
+    "\u56DB",
+    "\u4E94",
+    "\u516D"
+  ];
+  Component({
+    /**
+     * 组件的属性列表
+     */
+    properties: {
+      markCalendarList: {
+        type: Array,
+        value: []
+      },
+      isToday: {
+        type: Boolean,
+        value: false
+      },
+      defaultDate: {
+        type: String,
+        value: null
+      },
+      showFolding: {
+        type: Boolean,
+        value: true
+      },
+      weeekLayer: {
+        type: Number,
+        value: 1
+      }
+    },
+    lifetimes: {
+      attached: function() {
+      },
+      detached: function() {
+      },
+      created: function() {
+      },
+      ready: function() {
+        let animation = wx.createAnimation({
+          duration: 230,
+          delay: 0
+        });
+        this.setData({
+          animation: animation.export(),
+          MonthRange: this.data.defaultDate ? (0, import_dayjs.default)(this.data.defaultDate) : (0, import_dayjs.default)(),
+          value: this.data.defaultDate ? (0, import_dayjs.default)(this.data.defaultDate).format("YYYY-MM-DD") : (0, import_dayjs.default)().format("YYYY-MM-DD")
+        }, () => {
+          this.generationCalendar();
+        });
+      }
+    },
+    /**
+     * 组件的初始数据
+     */
+    data: {
+      today: (0, import_dayjs.default)().format("YYYY-MM-DD"),
+      MonthRange: (0, import_dayjs.default)(),
+      MonthText: (0, import_dayjs.default)().format("YYYY\u5E74MM\u6708"),
+      value: (0, import_dayjs.default)().format("YYYY-MM-DD"),
+      calendar: [],
+      calendarGroups: [],
+      weekdaysShort,
+      isFold: false,
+      showFolding: true,
+      weeekLayer: 1,
+      animation: {}
+    },
+    observers: {
+      "MonthRange": function(MonthRange2) {
+        this.setData({
+          MonthText: MonthRange2.format("YYYY\u5E74MM\u6708")
+        });
+      },
+      "value": function(value) {
+        this.setData({
+          MonthText: (0, import_dayjs.default)(value).format("YYYY\u5E74MM\u6708")
+        });
+      },
+      "calendarGroups": function(calendarGroups) {
+        if (this.data.isFold) {
+          const month = (0, import_dayjs.default)(calendarGroups[0].date).month();
+          this.setData({
+            MonthRange: this.data.MonthRange.month(month)
+          });
+        }
+      }
+    },
+    /**
+     * 组件的方法列表
+     */
+    methods: {
+      generationCalendar() {
+        const { MonthRange: MonthRange2 } = this.data;
+        const daysInMonth = MonthRange2.daysInMonth();
+        const firstDayOfMonth = MonthRange2.startOf("month").format("d");
+        const endDayOfMonth = MonthRange2.endOf("month").format("d");
+        const firstDay = MonthRange2.startOf("month");
+        const endDay = MonthRange2.endOf("month");
+        const calendar = [];
+        for (let i = 0; i < Number(firstDayOfMonth); i++) {
+          const date = firstDay.subtract(i + 1, "days").format("YYYY-MM-DD");
+          calendar.unshift({
+            date,
+            isCurrent: 0
+          });
+        }
+        for (let i = 0; i < daysInMonth; i++) {
+          const date = MonthRange2.date(i + 1).format("YYYY-MM-DD");
+          calendar.push({
+            date,
+            isCurrent: 1
+          });
+        }
+        for (let i = 0; i < 6 - Number(endDayOfMonth); i++) {
+          const date = endDay.add(i + 1, "days").format("YYYY-MM-DD");
+          ;
+          calendar.push({
+            date,
+            isCurrent: 0
+          });
+        }
+        this.setData({
+          calendar
+        }, () => this.generationWeek());
+      },
+      generationWeek(type) {
+        const { value, weeekLayer } = this.data;
+        const len = 7 * weeekLayer;
+        let groups = [];
+        if (type === "next") {
+          for (let i = 0; i < len; i++) {
+            groups.push({
+              date: (0, import_dayjs.default)(this.data.calendarGroups[0].date).add(weeekLayer, "week").startOf("week").add(i, "day").format("YYYY-MM-DD"),
+              isCurrent: 1
+            });
+          }
+        } else if (type === "prev") {
+          for (let i = 0; i < len; i++) {
+            groups.push({
+              date: (0, import_dayjs.default)(this.data.calendarGroups[0].date).subtract(weeekLayer, "week").startOf("week").add(i, "day").format("YYYY-MM-DD"),
+              isCurrent: 1
+            });
+          }
+        } else {
+          for (let i = 0; i < len; i++) {
+            groups.push({
+              date: value ? (0, import_dayjs.default)(value).startOf("week").add(i, "day").format("YYYY-MM-DD") : MonthRange.startOf("week").add(i, "day").format("YYYY-MM-DD"),
+              isCurrent: 1
+            });
+          }
+        }
+        this.setData({
+          calendarGroups: groups
+        }, () => {
+          this.getRangeDate();
+          this.handeleMarkCalendarList();
+        });
+      },
+      getRangeDate() {
+        const { isFold, calendar, calendarGroups } = this.data;
+        const beginTime = isFold ? calendarGroups[0].date : calendar[0].date;
+        const endTime = isFold ? calendarGroups[calendarGroups.length - 1].date : calendar[calendar.length - 1].date;
+        this.triggerEvent("onRangeDate", { beginTime, endTime });
+      },
+      handeleMarkCalendarList() {
+        const { calendar, calendarGroups, markCalendarList } = this.data;
+        this.setData({
+          calendar: calendar.map((item) => ({
+            ...item,
+            pointColor: markCalendarList.find((it) => item.date == it.date)?.pointColor
+          })),
+          calendarGroups: calendarGroups.map((item) => ({
+            ...item,
+            pointColor: markCalendarList.find((it) => item.date == it.date)?.pointColor
+          }))
+        });
+      },
+      onCheck(e) {
+        const { item } = e.target.dataset;
+        const { date } = item;
+        this.setData({
+          value: date
+        }, () => {
+          this.triggerEvent("onSelect", { day: date });
+        });
+      },
+      onFold() {
+        this.setData({
+          isFold: !this.data.isFold
+        }, () => {
+          this.generationCalendar();
+        });
+      },
+      onNext() {
+        const { MonthRange: MonthRange2, isFold } = this.data;
+        if (!isFold) {
+          this.setData({
+            MonthRange: MonthRange2.add(1, isFold ? "week" : "month")
+          }, () => {
+            this.generationCalendar();
+          });
+        }
+        this.generationWeek("next");
+        this.onAnimation();
+      },
+      onPrev() {
+        const { MonthRange: MonthRange2, isFold } = this.data;
+        if (!isFold) {
+          this.setData({
+            MonthRange: MonthRange2.subtract(1, isFold ? "week" : "month")
+          }, () => {
+            this.generationCalendar();
+          });
+        }
+        this.generationWeek("prev");
+        this.onAnimation();
+      },
+      onSlide(e) {
+        switch (e.detail) {
+          case "R":
+            this.onPrev();
+            break;
+          case "L":
+            this.onNext();
+            break;
+          default:
+            break;
+        }
+      },
+      onAnimation() {
+        let animation = wx.createAnimation({
+          duration: 320,
+          timingFunction: "step-start",
+          delay: 0
+        });
+        animation.opacity(0.3).step();
+        animation.opacity(1).step();
+        this.setData({
+          animation: animation.export()
+        });
+      },
+      onToToday() {
+        this.setData({
+          value: (0, import_dayjs.default)().format("YYYY-MM-DD"),
+          MonthRange: (0, import_dayjs.default)()
+        }, () => {
+          this.generationCalendar();
+          this.triggerEvent("onSelect", { day: (0, import_dayjs.default)().format("YYYY-MM-DD") });
+        });
+      }
+    }
+  });
+})();

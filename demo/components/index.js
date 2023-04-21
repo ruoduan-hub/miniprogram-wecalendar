@@ -323,7 +323,7 @@
         });
       },
       "calendarGroups": function(calendarGroups) {
-        if (this.data.isFold) {
+        if (this.data.isFold && calendarGroups) {
           const month = (0, import_dayjs.default)(calendarGroups[0].date).month();
           this.setData({
             MonthRange: this.data.MonthRange.month(month)

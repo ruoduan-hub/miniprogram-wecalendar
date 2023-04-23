@@ -61,7 +61,7 @@ yarn add miniprogram-wecalendar
 
 | Property | Type | Default | required | Description |
 | -------- | ----- | ----- | ----- | -------------------- |
-| isToday | Boolean | False | 0 | 是否展示今天俺妞icon |
+| isToday | Boolean | False | 0 | 是否展示今天按钮icon |
 | markCalendarList | `Array[{ date: YYYY-MM-DD pointColor: #ccc }]` | [] | 0 | 标记日历的数组,支持自定义颜色 |
 | defaultDate | String:  YYYY-MM-DD | Null | 0 | 默认时间 |
 | showFolding | Boolean | True | 0 | 日历折叠功能 |

@@ -11,7 +11,7 @@ const getEnv = () => {
 
 if (getEnv()) {
   let ctx = await esbuild.context({
-    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png}'),
+    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png,d.ts}'),
     outdir: 'demo/components',
     loader: {
       '.less': 'copy',
@@ -20,6 +20,7 @@ if (getEnv()) {
       '.json': 'copy',
       '.png': 'copy',
       '.json': 'copy',
+      '.d.ts': 'copy',
     },
     bundle: true,
     minify: false,
@@ -29,7 +30,7 @@ if (getEnv()) {
   ctx.watch()
 } else {
   esbuild.build({
-    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png}'),
+    entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png,d.ts}'),
     outdir: 'dist',
     loader: {
       '.less': 'copy',
@@ -37,6 +38,7 @@ if (getEnv()) {
       '.wxml': 'copy',
       '.json': 'copy',
       '.png': 'copy',
+      '.d.ts': 'copy',
     },
     drop: ['debugger', 'console'],
     bundle: true,

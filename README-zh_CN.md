@@ -47,6 +47,15 @@ yarn add miniprogram-wecalendar
 }
 ```
 
+>  打开开发工具 `less` 模式
+
+```json
+"useCompilerPlugins": [
+            "less"
+        ]
+```
+
+
 
 
 - 在 wxml 加入使用 👇🏻

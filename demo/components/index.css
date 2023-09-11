@@ -1,0 +1,85 @@
+/* src/index.less */
+.calendar {
+  background-color: #fff;
+}
+.calendar .calendar-header {
+  font-size: 16px;
+  font-weight: bold;
+  text-align: center;
+  padding: 22rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.calendar .calendar-header .left-icon,
+.calendar .calendar-header .right-icon {
+  width: 42rpx;
+  height: 42rpx;
+}
+.calendar .calendar-body {
+  width: 350px;
+  margin: 0 auto;
+  font-size: 16px;
+  height: auto;
+  transition: height 1.5s ease;
+}
+.calendar .calendar-body .weekday {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: minmax(50px, 50px);
+}
+.calendar .calendar-body .weekday .weekday-item {
+  line-height: 50px;
+  text-align: center;
+  line-height: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+.calendar .calendar-body .weekday .calendar-cell {
+  line-height: 50px;
+  text-align: center;
+  line-height: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: relative;
+}
+.calendar .calendar-body .weekday .calendar-cell .procColor {
+  width: 10rpx;
+  height: 10rpx;
+  background: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 45rpx;
+  bottom: 13rpx;
+}
+.calendar .calendar-body .weekday .cell-selected {
+  background-color: #115fe1;
+  color: #fff;
+}
+.calendar .calendar-body .weekday .cell-today {
+  line-height: 50px;
+  text-align: center;
+  line-height: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  position: relative;
+  background-color: rgba(17, 95, 225, 0.1);
+  color: #115FE1;
+}
+.calendar .calendar-body .weekday .cell-today .procColor {
+  width: 10rpx;
+  height: 10rpx;
+  background: #ccc;
+  border-radius: 50%;
+  position: absolute;
+  left: 45rpx;
+  bottom: 13rpx;
+}
+.calendar .action-fold {
+  text-align: center;
+  margin-top: 10rpx;
+}
+.calendar .action-fold image {
+  width: 46rpx;
+  height: 24rpx;
+}

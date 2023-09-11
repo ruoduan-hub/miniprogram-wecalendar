@@ -1,5 +1,6 @@
 import * as esbuild from 'esbuild'
 import * as glob from 'glob'
+import { lessLoader } from 'esbuild-plugin-less';
 
 
 const getEnv = () => {
@@ -9,19 +10,21 @@ const getEnv = () => {
 };
 
 
+const loaderConfig = {
+  '.less': 'css',
+  '.wxs': 'copy',
+  '.wxml': 'copy',
+  '.png': 'copy',
+  '.json': 'copy',
+  '.d.ts': 'copy',
+}
+
 if (getEnv()) {
   let ctx = await esbuild.context({
     entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png,d.ts}'),
     outdir: 'demo/components',
-    loader: {
-      '.less': 'copy',
-      '.wxs': 'copy',
-      '.wxml': 'copy',
-      '.json': 'copy',
-      '.png': 'copy',
-      '.json': 'copy',
-      '.d.ts': 'copy',
-    },
+    plugins: [lessLoader()],
+    loader: loaderConfig,
     bundle: true,
     minify: false,
     sourcemap: false,
@@ -32,14 +35,8 @@ if (getEnv()) {
   esbuild.build({
     entryPoints: glob.sync('src/**/*.{js,less,wxs,wxml,json,png,d.ts}'),
     outdir: 'dist',
-    loader: {
-      '.less': 'copy',
-      '.wxs': 'copy',
-      '.wxml': 'copy',
-      '.json': 'copy',
-      '.png': 'copy',
-      '.d.ts': 'copy',
-    },
+    plugins: [lessLoader()],
+    loader: loaderConfig,
     drop: ['debugger', 'console'],
     bundle: true,
     minify: true,

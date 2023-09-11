@@ -24,11 +24,10 @@
   "author": "ruoduan",
   "license": "Anti 996",
   "miniprogram": "dist",
-  "dependencies": {
-  },
   "devDependencies": {
     "dayjs": "^1.11.7",
-    "glob": "^10.2.1",
-    "esbuild": "0.17.17"
+    "esbuild": "0.17.17",
+    "esbuild-plugin-less": "^1.2.4",
+    "glob": "^10.2.1"
   }
 }

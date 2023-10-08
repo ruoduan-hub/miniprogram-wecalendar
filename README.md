@@ -45,7 +45,9 @@ yarn add miniprogram-wecalendar
   }
 }
 ```
-> open Development tools mode `less`
+> ~~open Development tools mode `less`~~
+>
+> 1.2.0 Support wxss
 
 ```json
 "useCompilerPlugins": [

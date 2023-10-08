@@ -47,7 +47,9 @@ yarn add miniprogram-wecalendar
 }
 ```
 
->  打开开发工具 `less` 模式
+> ~~打开开发工具 `less` 模式~~
+>
+> 1.2.0 支持 wxss
 
 ```json
 "useCompilerPlugins": [

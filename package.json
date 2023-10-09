@@ -1,6 +1,6 @@
 {
   "name": "miniprogram-wecalendar",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A miniprogram date component that supports sliding, weekly folding, and brisk",
   "keywords": [
     "miniprogram-Calendar",

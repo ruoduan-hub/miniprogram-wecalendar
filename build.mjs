@@ -11,7 +11,7 @@ const getEnv = () => {
   }
 };
 
-let cssToWxssPlugin = {
+const cssToWxssPlugin = {
   name: "css-to-wxss-plugin",
   setup(build) {
     build.initialOptions.write = false;
@@ -45,10 +45,11 @@ const loaderConfig = {
   ".json": "copy",
   ".less": "css",
   ".less": "copy",
+  ".d.ts": "copy",
 };
 
 if (getEnv()) {
-  let ctx = await esbuild.context({
+  const ctx = await esbuild.context({
     entryPoints: glob.sync("src/**/*.{js,less,wxs,wxml,json,png,d.ts}"),
     outdir: "demo/components",
     plugins: [lessLoader(), cssToWxssPlugin],
